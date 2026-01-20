@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.github.klee0kai.cloud.devkit.debug.annotations.DebugOnly
-import org.jetbrains.annotations.VisibleForTesting
 
 
 @Composable
@@ -17,7 +16,6 @@ fun EmptyScreen() {
 }
 
 @OptIn(DebugOnly::class)
-@VisibleForTesting
 @Composable
 fun EmptyScreenPreview() {
     Box(

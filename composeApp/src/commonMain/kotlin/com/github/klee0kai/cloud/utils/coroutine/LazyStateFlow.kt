@@ -1,5 +1,7 @@
 package com.github.klee0kai.cloud.utils.coroutine
 
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.updateAndGet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
@@ -7,8 +9,6 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.launch
-import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.atomic.AtomicReference
 
 interface LazyStateFlow<T, in Arg> : MutableStateFlow<T>, TouchableFlow<T, Arg> {
 
@@ -39,14 +39,14 @@ fun <T, Arg> lazyStateFlow(
      */
     block: suspend MutableStateFlow<T>.(arg: Arg) -> Unit,
 ): LazyStateFlow<T, Arg> {
-    val consumers = AtomicInteger(0)
-    val job = AtomicReference<Job>(null)
+    val consumers = atomic(0)
+    val job = atomic<Job?>(null)
     var restartArg = defaultArg
     val stateFlowMirror = MutableStateFlow(init)
 
     val restart: () -> Job = {
         val newJob = scope.launch {
-            if (consumers.get() <= 0) {
+            if (consumers.value <= 0) {
                 // no consumers, update not need
                 return@launch
             }
@@ -68,8 +68,7 @@ fun <T, Arg> lazyStateFlow(
         }
     }
 
-    return object : LazyStateFlow<T, Arg>,
-        MutableStateFlow<T> by stateFlowMirror {
+    return object : LazyStateFlow<T, Arg>, MutableStateFlow<T> by stateFlowMirror {
 
         override suspend fun collect(collector: FlowCollector<T>): Nothing {
             channelFlow.collect(collector)

@@ -1,16 +1,16 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.github.klee0kai.cloud.utils.views
 
 import androidx.compose.foundation.clickable
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.ZERO
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 @Composable
 @NonRestartableComposable
@@ -38,11 +38,11 @@ fun rememberClickDebounced(
     debounce: Duration = 500.milliseconds,
     launch: () -> Unit,
 ): () -> Unit {
-    var lastClickTime by remember { mutableStateOf<Long?>(null) }
+    var lastClickTime by remember { mutableStateOf<Instant?>(null) }
     return remember(key1, key2, key3, key4, key5, key6) {
         {
-            val now = System.currentTimeMillis()
-            if (lastClickTime?.let { now - it < debounce.inWholeMilliseconds } != true) {
+            val now = Clock.System.now()
+            if (lastClickTime?.let { now - it < debounce } != true) {
                 launch()
                 lastClickTime = now
             }
@@ -63,11 +63,11 @@ fun <Arg> rememberClickDebouncedArg(
     debounce: Duration = 500.milliseconds,
     launch: (Arg) -> Unit,
 ): (Arg) -> Unit {
-    var lastClickTime by remember { mutableStateOf<Long?>(null) }
+    var lastClickTime by remember { mutableStateOf<Instant?>(null) }
     return remember(key1, key2, key3, key4, key5, key6) {
         { arg: Arg ->
-            val now = System.currentTimeMillis()
-            if (lastClickTime?.let { now - it < debounce.inWholeMilliseconds } != true) {
+            val now = Clock.System.now()
+            if (lastClickTime?.let { now - it < debounce } != true) {
                 launch(arg)
                 lastClickTime = now
             }
@@ -99,11 +99,11 @@ fun <Arg, Arg2> rememberClickDebouncedArg2(
     debounce: Duration = 500.milliseconds,
     launch: (Arg, Arg2) -> Unit,
 ): (Arg, Arg2) -> Unit {
-    var lastClickTime by remember { mutableStateOf<Long?>(null) }
+    var lastClickTime by remember { mutableStateOf<Instant?>(null) }
     return remember(key1, key2, key3, key4, key5, key6) {
         { arg: Arg, arg2: Arg2 ->
-            val now = System.currentTimeMillis()
-            if (lastClickTime?.let { now - it < debounce.inWholeMilliseconds } != true) {
+            val now = Clock.System.now()
+            if (lastClickTime?.let { now - it < debounce } != true) {
                 launch(arg, arg2)
                 lastClickTime = now
             }
@@ -123,11 +123,11 @@ fun <Cons> rememberClickDebouncedCons(
     debounce: Duration = 500.milliseconds,
     launch: Cons.() -> Unit,
 ): Cons.() -> Unit {
-    var lastClickTime by remember { mutableStateOf<Long?>(null) }
+    var lastClickTime by remember { mutableStateOf<Instant?>(null) }
     return remember(key1, key2, key3, key4, key5, key6) {
         {
-            val now = System.currentTimeMillis()
-            if (lastClickTime?.let { now - it < debounce.inWholeMilliseconds } != true) {
+            val now = Clock.System.now()
+            if (lastClickTime?.let { now - it < debounce } != true) {
                 launch()
                 lastClickTime = now
             }

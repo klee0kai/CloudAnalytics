@@ -41,21 +41,6 @@ suspend fun <Arg> Flow<Arg>.onTicks(init: Arg, block: suspend (arg: Arg) -> Unit
     }
 }
 
-fun <T> Flow<T>.shareLatest(scope: CoroutineScope, clazz: Class<T>): Flow<T> {
-    val endl = object {}
-    val orFlow = this
-    val withEnd = flow {
-        orFlow.collect { emit(it) }
-        emit(endl)
-    }
-    return withEnd.shareIn(scope, SharingStarted.Eagerly, 2)
-        .takeWhile { it !== endl }
-        .filter { clazz.isInstance(it) } as Flow<T>
-}
-
-inline fun <reified T> Flow<T>.shareLatest(scope: CoroutineScope): Flow<T> =
-    shareLatest(scope, T::class.java)
-
 inline fun <reified T> Flow<T>.changeFilter(
     crossinline filter: suspend (old: T?, new: T) -> Boolean
 ): Flow<T> = runningFold(arrayOf()) { accumulator: Array<T>, value: T ->

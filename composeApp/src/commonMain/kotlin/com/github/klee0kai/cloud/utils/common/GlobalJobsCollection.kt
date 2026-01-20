@@ -1,6 +1,5 @@
 package com.github.klee0kai.cloud.utils.common
 
-import androidx.annotation.StringRes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
@@ -9,7 +8,7 @@ object GlobalJobsCollection {
     val globalJobs = MutableStateFlow(emptyList<GlobalJob>())
 
     inline fun <R> trackJob(
-        @StringRes descriptionRes: Int = 0,
+        descriptionRes: Int = 0,
         block: () -> R,
     ): R {
         val runId = Dummy.dummyId

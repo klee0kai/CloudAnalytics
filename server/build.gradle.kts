@@ -7,7 +7,8 @@ plugins {
 }
 
 group = "com.github.klee0kai.cloud"
-version = "1.0.0"
+version = libs.versions.cloud.analytics.name.get()
+
 application {
     mainClass.set("com.github.klee0kai.cloud.ApplicationKt")
     
@@ -16,6 +17,8 @@ application {
 }
 
 dependencies {
+    implementation(project(path = ":composeApp", configuration = "archives"))
+
     implementation(projects.shared)
 
     implementation(libs.logback)

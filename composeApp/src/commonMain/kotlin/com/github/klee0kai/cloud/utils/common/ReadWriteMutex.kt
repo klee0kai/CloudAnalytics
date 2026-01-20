@@ -1,11 +1,13 @@
 package com.github.klee0kai.cloud.utils.common
 
+import kotlinx.atomicfu.atomic
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Copyright 2017 ModelBox Inc.
@@ -60,7 +62,7 @@ class ReadWriteMutex {
      */
     private val allowNewWrites = Mutex()
 
-    private val readers = AtomicInteger()
+    private val readers = atomic(0)
 
     /**
      * Controls access to [readers].
@@ -143,6 +145,7 @@ class ReadWriteMutex {
 
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 fun ReadWriteMutex.stateFlow() = channelFlow<MutexInfo> {
     val listener: suspend (MutexInfo) -> Unit = {
         send(it)
@@ -151,7 +154,9 @@ fun ReadWriteMutex.stateFlow() = channelFlow<MutexInfo> {
     subscribe(listener)
     listener.invoke(state)
     awaitClose {
-        runBlocking { unsubscribe(listener) }
+        GlobalScope.launch {
+            unsubscribe(listener)
+        }
     }
 
 }

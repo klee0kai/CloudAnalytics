@@ -1,73 +1,104 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.composeHotReload)
     alias(libs.plugins.ksp)
-    kotlin("kapt")
 }
+
+group = "com.github.klee0kai.cloud"
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+
     }
 
-    jvm("desktop")
+    jvm("desktop") {
+
+    }
+
+    wasmJs {
+        outputModuleName = "composeApp"
+        browser {
+            val rootDirPath = project.rootDir.path
+            val projectDirPath = project.projectDir.path
+            commonWebpackConfig {
+                outputFileName = "bundle.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    cssSupport { enabled = true }
+                    mode = KotlinWebpackConfig.Mode.DEVELOPMENT
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(rootDirPath)
+                        add(projectDirPath)
+                    }
+                }
+            }
+
+        }
+
+        binaries.executable()
+    }
 
     sourceSets {
-        val desktopMain by getting
-
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
+        val androidMain by getting {
+            dependencies {
+                implementation(compose.preview)
+                implementation(libs.androidx.activity.compose)
+            }
         }
 
-        commonMain.dependencies {
-            implementation(projects.shared)
 
-            implementation(compose.preview)
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.material3AdaptiveNavigationSuite)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtimeCompose)
+        val commonMain by getting {
+            dependencies {
+                implementation(projects.shared)
 
-            implementation(libs.stone.kotlin)
-            implementation(libs.kermit)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.material3AdaptiveNavigationSuite)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.androidx.lifecycle.runtimeCompose)
+                implementation(libs.stone.kotlin)
+                implementation(libs.kermit)
+                implementation("org.jetbrains.kotlinx:atomicfu:0.23.2")
+
+            }
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
         }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutinesSwing)
+
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutinesSwing)
+
+                implementation(compose.preview)
+                implementation(compose.components.uiToolingPreview)
+            }
         }
     }
 }
 
 android {
-    namespace = "com.github.klee0kai.cloud"
+    namespace = group.toString()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.github.klee0kai.cloud"
+        applicationId = group.toString()
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.cloud.analytics.code.get().toInt()
+        versionName = libs.versions.cloud.analytics.name.get().toString()
     }
     packaging {
         resources {
@@ -79,14 +110,10 @@ android {
             isMinifyEnabled = false
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 }
 
 dependencies {
-    add("kapt", libs.stone.kapt)
+    ksp(libs.stone.ksp)
     debugImplementation(compose.uiTooling)
 }
 
@@ -96,8 +123,27 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.github.klee0kai.cloud"
-            packageVersion = "1.0.0"
+            packageName = group.toString()
+            packageVersion = libs.versions.cloud.analytics.name.get().toString()
         }
     }
+}
+
+val wasmArtifactsJar by tasks.register<Jar>(name = "wasmJsBrowserProductionJar") {
+    group = "build"
+    description = "Package WebAssembly production artifacts into a JAR"
+
+    archiveBaseName.set("wasm-artifacts")
+    archiveClassifier.set("prod")
+    archiveVersion.set(libs.versions.cloud.analytics.name.get())
+
+    dependsOn("wasmJsBrowserDistribution")
+
+    from(layout.buildDirectory.dir("dist/wasmJs/productionExecutable")) {
+        include("**/*")
+    }
+}
+
+artifacts {
+    add("archives", wasmArtifactsJar)
 }

@@ -3,7 +3,6 @@
 package com.github.klee0kai.cloud
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,12 +13,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import clouddeleloper.composeapp.generated.resources.Res
-import clouddeleloper.composeapp.generated.resources.compose_multiplatform
+import com.github.klee0kai.cloud.composeapp.generated.resources.Res
+import com.github.klee0kai.cloud.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }

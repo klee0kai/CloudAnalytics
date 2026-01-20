@@ -1,12 +1,9 @@
 package com.github.klee0kai.cloud.utils.coroutine
 
-import androidx.lifecycle.AtomicReference
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.getAndUpdate
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 
@@ -25,7 +22,7 @@ fun <T> Flow<T>.touchable(): TouchableFlow<T, Unit> {
     val originFlow = this
     val ticker = MutableSharedFlow<Unit>(replay = 1)
     val touchBody = channelFlow {
-        val lastJob = AtomicReference<Job?>()
+        val lastJob = atomic<Job?>(null)
         ticker.onTicks {
             lastJob.getAndUpdate { last ->
                 last?.cancel()
@@ -55,7 +52,7 @@ fun <T, Arg> touchableFlow(
     block: suspend FlowCollector<T>.(arg: Arg) -> Unit,
 ): TouchableFlow<T, Arg> {
     val ticker = MutableSharedFlow<Arg>()
-    val lastJob = AtomicReference<Job?>()
+    val lastJob = atomic<Job?>(null)
     val touchBody = channelFlow {
         ticker.onTicks(init) { arg ->
             lastJob.getAndUpdate { last ->

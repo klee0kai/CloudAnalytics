@@ -1,42 +1,46 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidApplication)
     alias(libs.plugins.ksp)
-    kotlin("kapt")
 }
+
+group = "com.github.klee0kai.cloud.shared"
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+
     }
 
     jvm()
 
-    sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
-            implementation(libs.kermit)
+    wasmJs {
+        browser {
+
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        binaries.executable()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                // put your Multiplatform dependencies here
+                implementation(libs.kermit)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
         }
     }
 }
 
 android {
-    namespace = "com.github.klee0kai.cloud.shared"
+    namespace = group.toString()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+        version = libs.versions.cloud.analytics.name.get()
+
     }
 }

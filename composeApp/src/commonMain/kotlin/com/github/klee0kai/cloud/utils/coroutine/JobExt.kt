@@ -1,21 +1,20 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.github.klee0kai.cloud.utils.coroutine
 
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withTimeoutOrNull
+import kotlinx.coroutines.*
+import kotlin.time.Clock
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.ExperimentalTime
 
 fun emptyJob(): Job = Job().also { it.complete() }
 
 fun <T> completeAsync(result: T): Deferred<T> = CompletableDeferred(value = result)
 
 suspend fun <T> minDuration(duration: Duration, block: suspend () -> T): T {
-    val start = System.currentTimeMillis()
+    val start = Clock.System.now()
     val r = block.invoke()
-    val left = duration - (System.currentTimeMillis() - start).milliseconds
+    val left = duration - (Clock.System.now() - start)
     if (left.isPositive()) delay(left)
     return r
 }

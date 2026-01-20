@@ -1,14 +1,11 @@
 package com.github.klee0kai.cloud.utils.common
 
-import java.util.UUID
-import java.util.concurrent.atomic.AtomicLong
+import kotlinx.atomicfu.atomic
 
 object Dummy {
 
-    private val dummyIdCounter = AtomicLong()
+    private val dummyIdCounter = atomic(0L)
 
     val dummyId get() = dummyIdCounter.incrementAndGet()
-
-    val unicString get() = UUID.randomUUID().toString()
 
 }
