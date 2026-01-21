@@ -25,6 +25,7 @@ kotlin {
             dependencies {
                 // put your Multiplatform dependencies here
                 implementation(libs.kermit)
+                implementation(libs.stone.kotlin)
             }
         }
         val commonTest by getting {
@@ -43,4 +44,9 @@ android {
         version = libs.versions.cloud.analytics.name.get()
 
     }
+}
+
+
+dependencies {
+    ksp(libs.stone.ksp)
 }

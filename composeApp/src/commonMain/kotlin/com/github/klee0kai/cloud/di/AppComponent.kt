@@ -1,11 +1,11 @@
 package com.github.klee0kai.cloud.di
 
-import com.github.klee0kai.cloud.di.dependencies.AppComponentProviders
-import com.github.klee0kai.stone.annotations.component.Component
+import com.github.klee0kai.cloud.core.di.CoreComponentModules
+import com.github.klee0kai.cloud.core.di.dependencies.CoreComponentProviders
 
 //@Component(
 //    identifiers = [
 //
 //    ],
 //)
-interface AppComponent : AppComponentProviders, AppComponentModules
+interface AppComponent : CoreComponentProviders, CoreComponentModules

@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.di
+package com.github.klee0kai.cloud.core.di
 
 import com.github.klee0kai.cloud.core.di.modules.InteractorsModule
 import com.github.klee0kai.cloud.core.di.modules.PresentersModule
@@ -6,12 +6,12 @@ import com.github.klee0kai.cloud.core.di.modules.ServicesModule
 import com.github.klee0kai.stone.annotations.component.Init
 import com.github.klee0kai.stone.annotations.component.ModuleOriginFactory
 
-interface AppComponentModules {
+interface CoreComponentModules {
 
     /* get module */
     fun presenters(): PresentersModule
     fun interactors(): InteractorsModule
-    fun repositories(): ServicesModule
+    fun services(): ServicesModule
 
     /* get origin factories */
     @ModuleOriginFactory
@@ -21,7 +21,7 @@ interface AppComponentModules {
     fun interactorsFactory(): InteractorsModule
 
     @ModuleOriginFactory
-    fun repositoriesFactory(): ServicesModule
+    fun servicesFactory(): ServicesModule
 
     /* override */
 
