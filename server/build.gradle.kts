@@ -17,7 +17,7 @@ application {
 }
 
 dependencies {
-    implementation(project(path = ":composeApp", configuration = "archives"))
+    implementation(project(path = ":composeApp", configuration = "wasmArchives"))
 
     implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-server-openapi")

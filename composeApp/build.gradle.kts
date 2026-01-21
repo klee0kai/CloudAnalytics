@@ -150,6 +150,14 @@ val wasmArtifactsJar by tasks.register<Jar>(name = "wasmJsBrowserProductionJar")
     }
 }
 
+val wasmArchives by configurations.creating {
+    isCanBeConsumed = true
+    isCanBeResolved = false
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+    }
+}
+
 artifacts {
-    add("archives", wasmArtifactsJar)
+    add("wasmArchives", wasmArtifactsJar)
 }
