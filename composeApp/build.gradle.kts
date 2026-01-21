@@ -11,6 +11,28 @@ plugins {
 
 group = "com.github.klee0kai.cloud"
 
+android {
+    namespace = group.toString()
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    defaultConfig {
+        applicationId = group.toString()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        versionCode = libs.versions.cloud.analytics.code.get().toInt()
+        versionName = libs.versions.cloud.analytics.name.get().toString()
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+}
+
 kotlin {
     androidTarget {
 
@@ -46,6 +68,11 @@ kotlin {
     sourceSets {
         val androidMain by getting {
             dependencies {
+                implementation("androidx.core:core-ktx:1.12.0")
+                implementation("androidx.compose.ui:ui:1.5.0")
+                implementation("androidx.compose.material3:material3:1.2.0")
+
+
                 implementation(compose.preview)
                 implementation(libs.androidx.activity.compose)
             }
@@ -89,28 +116,7 @@ kotlin {
     }
 }
 
-android {
-    namespace = group.toString()
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-    defaultConfig {
-        applicationId = group.toString()
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = libs.versions.cloud.analytics.code.get().toInt()
-        versionName = libs.versions.cloud.analytics.name.get().toString()
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-}
 
 dependencies {
     ksp(libs.stone.ksp)

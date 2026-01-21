@@ -19,6 +19,12 @@ application {
 dependencies {
     implementation(project(path = ":composeApp", configuration = "archives"))
 
+    implementation("io.ktor:ktor-server-core")
+    implementation("io.ktor:ktor-server-openapi")
+    implementation("io.ktor:ktor-server-content-negotiation")
+    implementation("io.ktor:ktor-serialization-kotlinx-json")
+    implementation("io.ktor:ktor-server-netty")
+
     implementation(projects.shared)
 
     implementation(libs.logback)
