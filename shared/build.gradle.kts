@@ -28,9 +28,23 @@ kotlin {
                 implementation(libs.stone.kotlin)
             }
         }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation("org.gradle:gradle-tooling-api:9.1.0")
+            }
+        }
+
+
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+            }
+        }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
             }
         }
     }

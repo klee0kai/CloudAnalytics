@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud
+package com.github.klee0kai.cloud.core
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -9,4 +9,5 @@ class SharedCommonTest {
     fun example() {
         assertEquals(3, 1 + 2)
     }
+
 }

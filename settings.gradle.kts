@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.maven
+
 rootProject.name = "CloudDeleloper"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -13,6 +15,8 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven(url = "https://jitpack.io")
+        maven { url = uri("https://repo.gradle.org/gradle/libs-releases") }
+        mavenLocal()
     }
 }
 
@@ -27,6 +31,8 @@ dependencyResolutionManagement {
         }
         mavenCentral()
         maven(url = "https://jitpack.io")
+        maven { url = uri("https://repo.gradle.org/gradle/libs-releases") }
+        mavenLocal()
     }
 }
 

@@ -28,5 +28,11 @@ interface CoreComponentModules {
     @Init
     fun initPresenterModule(presentersModule: PresentersModule)
 
+    @Init
+    fun initInteractorsModule(services: InteractorsModule)
+
+    @Init
+    fun initServicesModule(services: ServicesModule)
+
 
 }
