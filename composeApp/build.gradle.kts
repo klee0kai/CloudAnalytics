@@ -68,10 +68,7 @@ kotlin {
     sourceSets {
         val androidMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.12.0")
-                implementation("androidx.compose.ui:ui:1.5.0")
-                implementation("androidx.compose.material3:material3:1.2.0")
-
+                implementation(libs.androidx.core.ktx)
 
                 implementation(compose.preview)
                 implementation(libs.androidx.activity.compose)
@@ -82,6 +79,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(projects.shared)
+                implementation(libs.kotlinx.atomicfu)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -90,11 +88,11 @@ kotlin {
                 implementation(compose.material3AdaptiveNavigationSuite)
                 implementation(compose.ui)
                 implementation(compose.components.resources)
+
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtimeCompose)
                 implementation(libs.stone.kotlin)
                 implementation(libs.kermit)
-                implementation("org.jetbrains.kotlinx:atomicfu:0.23.2")
 
             }
         }
