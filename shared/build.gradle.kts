@@ -26,6 +26,7 @@ kotlin {
                 // put your Multiplatform dependencies here
                 implementation(libs.kermit)
                 implementation(libs.stone.kotlin)
+                implementation(libs.jetbrains.koog)
             }
         }
 

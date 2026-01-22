@@ -71,6 +71,10 @@ androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "an
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
 
 
+# https://docs.koog.ai/
+jetbrains-koog = { module = "ai.koog:koog-agents", version = "0.6.0" }
+
+
 # https://github.com/klee0kai/stone
 stone-kotlin = { group = "com.github.klee0kai.stone", name = "stone_multiplatform", version.ref = "stone" }
 stone-ksp = { group = "com.github.klee0kai.stone", name = "stone_ksp", version.ref = "stone" }
