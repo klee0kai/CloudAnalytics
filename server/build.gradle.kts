@@ -22,13 +22,11 @@ dependencies {
     implementation(projects.shared)
 
     implementation(libs.logback)
-    implementation(libs.ktor.serverCore)
-    implementation(libs.ktor.serverNetty)
-    implementation(libs.ktor.openapi)
-    implementation(libs.ktor.contentNegotiation)
-    implementation(libs.ktor.json)
+    implementation(libs.bundles.ktor.server)
+    implementation(libs.bundles.ktor.client)
+
     implementation(libs.kermit)
 
-    testImplementation(libs.ktor.serverTestHost)
+    testImplementation(libs.ktor.server.testhost)
     testImplementation(libs.kotlin.testJunit)
 }
