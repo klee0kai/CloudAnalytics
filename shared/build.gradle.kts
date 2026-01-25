@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "com.github.klee0kai.cloud.shared"
@@ -27,16 +28,34 @@ kotlin {
                 implementation(libs.kermit)
                 implementation(libs.stone.kotlin)
                 implementation(libs.jetbrains.koog)
+                implementation(libs.kotlinpoet)
+
+                implementation(libs.bundles.kotlin)
+                implementation(libs.bundles.ktor.common)
+                implementation(libs.bundles.ktor.client)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation("org.gradle:gradle-tooling-api:9.1.0")
+                implementation(libs.gradle.tooling)
+                implementation(libs.tasktree)
+                implementation(libs.bundles.ktor.server)
+                implementation(libs.ktor.client.okhttp)
             }
         }
 
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
 
+        val wasmJsMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.js)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
@@ -45,7 +64,7 @@ kotlin {
 
         val jvmTest by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
     }

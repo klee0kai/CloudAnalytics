@@ -11,7 +11,7 @@ version = libs.versions.cloud.analytics.name.get()
 
 application {
     mainClass.set("com.github.klee0kai.cloud.ApplicationKt")
-    
+
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
@@ -22,13 +22,11 @@ dependencies {
     implementation(projects.shared)
 
     implementation(libs.logback)
-    implementation(libs.ktor.serverCore)
-    implementation(libs.ktor.serverNetty)
-    implementation(libs.ktor.openapi)
-    implementation(libs.ktor.contentNegotiation)
-    implementation(libs.ktor.json)
+    implementation(libs.bundles.ktor.server)
+    implementation(libs.bundles.ktor.client)
+
     implementation(libs.kermit)
 
-    testImplementation(libs.ktor.serverTestHost)
+    testImplementation(libs.ktor.server.testhost)
     testImplementation(libs.kotlin.testJunit)
 }

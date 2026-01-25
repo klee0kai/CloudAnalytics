@@ -32,6 +32,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven(url = "https://jitpack.io")
         maven { url = uri("https://repo.gradle.org/gradle/libs-releases") }
+        gradlePluginPortal()
         mavenLocal()
     }
 }
