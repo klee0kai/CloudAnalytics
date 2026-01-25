@@ -1,0 +1,88 @@
+package com.github.klee0kai.cloud.core.utils.poet
+
+import com.squareup.kotlinpoet.*
+
+@PoetDsl
+fun TypeSpec.Builder.genProperty(
+    name: String,
+    type: TypeName,
+    vararg modifiers: KModifier,
+    block: PropertySpec.Builder.() -> Unit = {}
+): PropertySpec {
+    return PropertySpec.builder(name, type, *modifiers)
+        .apply(block)
+        .build()
+        .also {
+            addProperty(it)
+        }
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genClass(
+    className: ClassName,
+    block: TypeSpec.Builder.() -> Unit = {},
+) {
+    addType(
+        TypeSpec.classBuilder(className)
+            .apply(block)
+            .build()
+    )
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genObject(
+    className: ClassName,
+    block: TypeSpec.Builder.() -> Unit = {},
+) {
+    addType(
+        TypeSpec.objectBuilder(className)
+            .apply(block)
+            .build()
+    )
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genInterface(
+    className: ClassName,
+    block: TypeSpec.Builder.() -> Unit = {},
+) {
+    addType(
+        TypeSpec.interfaceBuilder(className)
+            .apply(block)
+            .build()
+    )
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genFun(
+    name: String,
+    block: FunSpec.Builder.() -> Unit = {},
+) {
+    addFunction(
+        FunSpec.builder(name)
+            .apply(block)
+            .build()
+    )
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genPrimaryConstructor(
+    block: FunSpec.Builder.() -> Unit = {},
+) {
+    primaryConstructor(
+        FunSpec.constructorBuilder()
+            .apply(block)
+            .build()
+    )
+}
+
+@PoetDsl
+fun TypeSpec.Builder.genConstructor(
+    block: FunSpec.Builder.() -> Unit = {},
+) {
+    addFunction(
+        FunSpec.constructorBuilder()
+            .apply(block)
+            .build()
+    )
+}
