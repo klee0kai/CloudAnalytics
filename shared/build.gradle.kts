@@ -14,10 +14,13 @@ kotlin {
 
     jvm()
 
-    wasmJs {
-        browser {
+    js {
+        browser { }
+        binaries.executable()
+    }
 
-        }
+    wasmJs {
+        browser { }
         binaries.executable()
     }
 
@@ -27,7 +30,6 @@ kotlin {
                 // put your Multiplatform dependencies here
                 implementation(libs.kermit)
                 implementation(libs.stone.kotlin)
-                implementation(libs.jetbrains.koog)
                 implementation(libs.kotlinpoet)
 
                 implementation(libs.bundles.kotlin)
@@ -38,6 +40,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
+                implementation(libs.jetbrains.koog)
                 implementation(libs.gradle.tooling)
                 implementation(libs.tasktree)
                 implementation(libs.bundles.ktor.server)
@@ -47,6 +50,7 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
+                implementation(libs.jetbrains.koog)
                 implementation(libs.ktor.client.okhttp)
             }
         }

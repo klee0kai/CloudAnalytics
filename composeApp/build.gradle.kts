@@ -42,8 +42,20 @@ kotlin {
 
     }
 
+
+
+    js {
+        outputModuleName = "composeAppJs"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "bundle.js"
+            }
+        }
+        binaries.executable()
+    }
+
     wasmJs {
-        outputModuleName = "composeApp"
+        outputModuleName = "composeAppWasm"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -66,51 +78,45 @@ kotlin {
     }
 
     sourceSets {
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.androidx.core.ktx)
-
-                implementation(compose.preview)
-                implementation(libs.androidx.activity.compose)
-            }
-        }
-
-
         val commonMain by getting {
             dependencies {
                 implementation(projects.shared)
                 implementation(libs.kotlinx.atomicfu)
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.material3AdaptiveNavigationSuite)
-                implementation(compose.ui)
-                implementation(compose.components.resources)
+                implementation(libs.bundles.compose)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtimeCompose)
                 implementation(libs.stone.kotlin)
                 implementation(libs.kermit)
 
+//                implementation("io.github.justdeko:kuiver:0.2.1")
+
             }
         }
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutinesSwing)
+                implementation(libs.compose.tooling)
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.activity.compose)
+                implementation(libs.compose.tooling)
+            }
+        }
+
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
 
-        val desktopMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-                implementation(libs.kotlinx.coroutinesSwing)
 
-                implementation(compose.preview)
-                implementation(compose.components.uiToolingPreview)
-            }
-        }
     }
 }
 
