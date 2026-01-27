@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "com.github.klee0kai.cloud"
@@ -90,8 +91,7 @@ kotlin {
                 implementation(libs.stone.kotlin)
                 implementation(libs.kermit)
 
-//                implementation("io.github.justdeko:kuiver:0.2.1")
-
+                implementation(libs.compose.kuiver)
             }
         }
         val desktopMain by getting {

@@ -9,7 +9,7 @@ android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "35"
 
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 ksp = "2.3.4"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.9.0"
@@ -20,7 +20,6 @@ logback = "1.5.18"
 compose = "1.10.0"
 compose-m = "1.7.3"
 compose-m3 = "1.9.0"
-composeHotReload = "1.0.0-alpha09"
 composeMultiplatform = "1.10.0"
 compose-nav = "1.5.0"
 
@@ -56,7 +55,6 @@ kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seria
 # https://kotlinlang.org/docs/reference/coroutines-overview.html
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 
@@ -77,6 +75,7 @@ compose-resources = { module = "org.jetbrains.compose.components:components-reso
 compose-m-icons = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "compose-m" }
 compose-m3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-m3" }
 compose-m3-adaptive-nav = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "compose-m3" }
+compose-kuiver = { module = "io.github.justdeko:kuiver", version = "0.2.1" }
 
 ## Common Testing
 
@@ -151,16 +150,15 @@ ktor-common = ["ktor-serialization-json", "ktor-utils", "ktor-io"]
 ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-client-logging"]
 ktor-server = ["ktor-server-core", "ktor-server-netty", "ktor-server-content-negotiation", "ktor-server-swagger"]
 compose = [
-    "compose-foundation","compose-runtime","compose-runtime-saveable", "compose-ui","compose-resources",
-    "compose-animation", "compose-animation-graphics","compose-util","compose-preview",
-    "compose-m3","compose-m3-adaptive-nav","compose-m-icons"
+    "compose-foundation", "compose-runtime", "compose-runtime-saveable", "compose-ui", "compose-resources",
+    "compose-animation", "compose-animation-graphics", "compose-util", "compose-preview",
+    "compose-m3", "compose-m3-adaptive-nav", "compose-m-icons"
 ]
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
