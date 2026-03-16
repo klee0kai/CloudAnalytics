@@ -1,0 +1,22 @@
+package com.github.klee0kai.cloud.core.di.modules
+
+import com.github.klee0kai.cloud.core.data.platform.initNetworkEngine
+import com.github.klee0kai.cloud.core.data.settings.AppLocalSettings
+import com.github.klee0kai.stone.annotations.module.Module
+import com.github.klee0kai.stone.annotations.module.Provide
+import com.russhwolf.settings.Settings
+import io.ktor.client.HttpClient
+
+@Module
+interface DataModule {
+
+    @Provide(cache = Provide.CacheType.Weak)
+    fun networkEngine(): HttpClient = initNetworkEngine()
+
+    @Provide(cache = Provide.CacheType.Weak)
+    fun settingsEngine(): Settings = Settings()
+
+    @Provide(cache = Provide.CacheType.Weak)
+    fun appSettings(): AppLocalSettings = AppLocalSettings()
+
+}

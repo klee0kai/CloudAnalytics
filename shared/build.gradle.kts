@@ -27,14 +27,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // put your Multiplatform dependencies here
-                implementation(libs.kermit)
-                implementation(libs.stone.kotlin)
-                implementation(libs.kotlinpoet)
-
                 implementation(libs.bundles.kotlin)
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.bundles.ktor.client)
+                implementation(libs.bundles.multiplatform.settings)
+
+                // put your Multiplatform dependencies here
+                implementation(libs.kotlinx.atomicfu)
+                implementation(libs.kermit)
+                implementation(libs.stone.kotlin)
+                implementation(libs.kotlinpoet)
             }
         }
 
@@ -45,6 +47,7 @@ kotlin {
                 implementation(libs.tasktree)
                 implementation(libs.bundles.ktor.server)
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.ktor.client.cio)
             }
         }
 
