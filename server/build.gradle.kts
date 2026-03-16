@@ -19,7 +19,7 @@ application {
 dependencies {
     implementation(project(path = ":compose", configuration = "wasmArchives"))
 
-    implementation(projects.shared)
+    implementation(projects.core)
 
     implementation(libs.logback)
     implementation(libs.bundles.ktor.server)

@@ -40,7 +40,7 @@ plugins {
 }
 
 include(
-    ":shared",
+    ":core",
     ":compose",
     ":server",
 )

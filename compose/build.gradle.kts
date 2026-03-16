@@ -80,7 +80,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(projects.shared)
+                implementation(projects.core)
 
                 implementation(libs.bundles.compose)
                 implementation(libs.kotlinx.atomicfu)
