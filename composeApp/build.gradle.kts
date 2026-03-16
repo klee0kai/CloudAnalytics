@@ -20,7 +20,7 @@ android {
         applicationId = group.toString()
         minSdk = libs.versions.android.minSdk.get().toInt()
         versionCode = libs.versions.cloud.analytics.code.get().toInt()
-        versionName = libs.versions.cloud.analytics.name.get().toString()
+        versionName = libs.versions.cloud.analytics.name.get()
     }
     packaging {
         resources {
@@ -42,7 +42,6 @@ kotlin {
     jvm("desktop") {
 
     }
-
 
 
     js {
@@ -82,9 +81,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(projects.shared)
-                implementation(libs.kotlinx.atomicfu)
 
                 implementation(libs.bundles.compose)
+                implementation(libs.kotlinx.atomicfu)
+
 
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtimeCompose)
@@ -134,7 +134,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = group.toString()
-            packageVersion = libs.versions.cloud.analytics.name.get().toString()
+            packageVersion = libs.versions.cloud.analytics.name.get()
         }
     }
 }

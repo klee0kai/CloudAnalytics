@@ -37,6 +37,7 @@ kotlin {
                 implementation(libs.kermit)
                 implementation(libs.stone.kotlin)
                 implementation(libs.kotlinpoet)
+                implementation(libs.koson)
             }
         }
 
