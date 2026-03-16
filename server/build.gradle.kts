@@ -17,7 +17,7 @@ application {
 }
 
 dependencies {
-    implementation(project(path = ":composeApp", configuration = "wasmArchives"))
+    implementation(project(path = ":compose", configuration = "wasmArchives"))
 
     implementation(projects.shared)
 

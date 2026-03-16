@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.maven
-
 rootProject.name = "CloudDeleloper"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -41,6 +39,8 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-include(":composeApp")
-include(":server")
-include(":shared")
+include(
+    ":shared",
+    ":compose",
+    ":server",
+)

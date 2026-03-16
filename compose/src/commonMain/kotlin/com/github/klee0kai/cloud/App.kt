@@ -13,8 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.github.klee0kai.cloud.composeapp.generated.resources.Res
-import com.github.klee0kai.cloud.composeapp.generated.resources.compose_multiplatform
+import com.github.klee0kai.cloud.compose.generated.resources.Res
+import com.github.klee0kai.cloud.compose.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
