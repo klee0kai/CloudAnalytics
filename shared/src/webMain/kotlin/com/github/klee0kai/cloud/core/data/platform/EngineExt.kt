@@ -1,5 +1,6 @@
 package com.github.klee0kai.cloud.core.data.platform
 
+import com.russhwolf.settings.Settings
 import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.websocket.*
@@ -18,3 +19,5 @@ actual fun initNetworkEngine(
         )
     }
 }
+
+actual fun initSettingsEngine(): Settings = Settings()
