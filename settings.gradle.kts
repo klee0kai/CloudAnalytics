@@ -42,5 +42,5 @@ plugins {
 include(
     ":core",
     ":compose",
-    ":server",
+    ":app",
 )
