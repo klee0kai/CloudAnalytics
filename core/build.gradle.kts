@@ -38,7 +38,9 @@ kotlin {
                 api(libs.kotlinx.atomicfu)
                 api(libs.kermit)
                 api(libs.stone.kotlin)
-                api(libs.kotlinpoet)
+
+                api(libs.kotlin.poet)
+
                 api(libs.koson)
             }
         }
@@ -54,6 +56,9 @@ kotlin {
                 api(libs.ktor.client.okhttp)
                 api(libs.ktor.client.cio)
 
+                api(libs.kotlin.ksp)
+                api(libs.kotlin.compiler)
+                api(libs.kotlin.poet.ksp)
 
             }
         }

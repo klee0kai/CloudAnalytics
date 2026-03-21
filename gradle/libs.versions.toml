@@ -156,8 +156,13 @@ crossbox-ksp = { group = "com.github.klee0kai.crossbox", name = "processor", ver
 compose-nav = { group = "dev.olshevski.navigation", name = "reimagined", version.ref = "compose-nav" }
 
 # kotlin poet
-kotlinpoet = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinpoet" }
-kotlinpoet-ksp = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinpoet" }
+kotlin-poet = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinpoet" }
+kotlin-poet-ksp = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinpoet" }
+
+# code processing and generation
+kotlin-ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
+kotlin-compiler = { group = "org.jetbrains.kotlin", name = "kotlin-compiler-embeddable", version.ref = "kotlin" }
+
 
 # task tree
 tasktree = { module = "com.github.klee0kai.tasktree:tasktree", version.ref = "tasktree" }
