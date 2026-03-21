@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.core.gradle.poet
+package com.github.klee0kai.cloud.core.kotlin.poet
 
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.Modifier

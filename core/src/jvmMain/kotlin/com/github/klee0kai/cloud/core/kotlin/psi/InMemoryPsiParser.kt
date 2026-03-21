@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.core.gradle.psi
+package com.github.klee0kai.cloud.core.kotlin.psi
 
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment

@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.core.gradle.psi
+package com.github.klee0kai.cloud.core.kotlin.psi
 
 import com.google.devtools.ksp.symbol.FileLocation
 import com.google.devtools.ksp.symbol.KSNode

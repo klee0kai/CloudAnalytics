@@ -5,7 +5,6 @@ import com.github.klee0kai.cloud.core.gradle.model.ProjectInfo
 import com.github.klee0kai.cloud.core.gradle.model.TaskTreeResults
 import com.github.klee0kai.cloud.core.gradle.model.toDomainModel
 import com.github.klee0kai.cloud.core.gradle.model.toProjectInfo
-import com.github.klee0kai.cloud.core.gradle.GradleProjectService
 import com.github.klee0kai.cloud.core.utils.coroutine.StreamFlow
 import com.github.klee0kai.cloud.core.utils.coroutine.childSupervisedScope
 import com.github.klee0kai.cloud.core.utils.poet.codeFlow
@@ -18,6 +17,7 @@ import org.gradle.tooling.ProgressListener
 import org.gradle.tooling.model.GradleProject
 import org.gradle.tooling.model.build.BuildEnvironment
 import org.gradle.tooling.model.idea.IdeaProject
+import org.jetbrains.kotlin.psi.KtFile
 import java.io.File
 
 class GradleProjectServiceImpl(

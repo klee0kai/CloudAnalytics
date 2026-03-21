@@ -2,6 +2,7 @@ package com.github.klee0kai.cloud.core.gradle
 
 import com.github.klee0kai.cloud.core.gradle.model.ProjectInfo
 import com.github.klee0kai.cloud.core.gradle.model.TaskTreeResults
+import org.jetbrains.kotlin.psi.KtFile
 
 interface GradleProjectService {
 

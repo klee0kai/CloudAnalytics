@@ -49,6 +49,7 @@ kotlin {
             dependencies {
                 api(libs.bundles.ktor.server)
                 api(libs.bundles.rpc.server)
+                api(libs.bundles.ktlint)
 
                 api(libs.jetbrains.koog)
                 api(libs.gradle.tooling)
@@ -59,7 +60,6 @@ kotlin {
                 api(libs.kotlin.ksp)
                 api(libs.kotlin.compiler)
                 api(libs.kotlin.poet.ksp)
-
             }
         }
 
