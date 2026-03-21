@@ -5,6 +5,7 @@ import com.github.klee0kai.cloud.core.gradle.model.ProjectInfo
 import com.github.klee0kai.cloud.core.gradle.model.TaskTreeResults
 import com.github.klee0kai.cloud.core.gradle.model.toDomainModel
 import com.github.klee0kai.cloud.core.gradle.model.toProjectInfo
+import com.github.klee0kai.cloud.core.gradle.GradleProjectService
 import com.github.klee0kai.cloud.core.utils.coroutine.StreamFlow
 import com.github.klee0kai.cloud.core.utils.coroutine.childSupervisedScope
 import com.github.klee0kai.cloud.core.utils.poet.codeFlow

@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
     alias(libs.plugins.ksp)
-    kotlin("kapt")
+    alias(libs.plugins.kotlinx.rpc)
     application
 }
 

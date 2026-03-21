@@ -7,7 +7,7 @@ import io.ktor.client.*
 
 interface DataCoreProvider {
 
-    fun networkEngine(): AsyncCoroutineProvide<HttpClient>
+    fun networkClientEngine(): AsyncCoroutineProvide<HttpClient>
 
     fun settingsEngine(): AsyncCoroutineProvide<Settings>
 

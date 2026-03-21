@@ -1,0 +1,15 @@
+package com.github.klee0kai.cloud.core.di.modules
+
+import com.github.klee0kai.cloud.core.di.identifier.GradleProjectId
+import com.github.klee0kai.cloud.core.gradle.GradleProjectService
+import com.github.klee0kai.cloud.core.gradle.GradleProjectServiceImpl
+import com.github.klee0kai.stone.annotations.module.Module
+
+@Module
+interface ServicesJvmCoreModule {
+
+    suspend fun gradleProjectService(
+        gradleProjectId: GradleProjectId,
+    ): GradleProjectService = GradleProjectServiceImpl(gradleProjectId)
+
+}

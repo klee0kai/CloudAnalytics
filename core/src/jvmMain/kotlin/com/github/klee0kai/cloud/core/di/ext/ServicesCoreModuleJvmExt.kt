@@ -6,8 +6,4 @@ import com.github.klee0kai.cloud.core.gradle.GradleProjectServiceImpl
 
 open class ServicesCoreModuleJvmExt : ServicesCoreModule {
 
-    override fun gradleProjectService(
-        gradleProjectId: GradleProjectId,
-    ) = GradleProjectServiceImpl(gradleProjectId)
-
 }

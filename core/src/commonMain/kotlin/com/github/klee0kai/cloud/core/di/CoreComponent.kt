@@ -6,11 +6,11 @@ import com.github.klee0kai.cloud.core.di.modules.CoreModules
 import com.github.klee0kai.stone.annotations.component.Component
 
 
-expect val CoreComponentDI :Core
+expect val CoreDI :CoreComponent
 
 @Component(
     identifiers = [
         GradleProjectId::class,
     ],
 )
-interface Core : CoreProviders, CoreModules
+interface CoreComponent : CoreProviders, CoreModules

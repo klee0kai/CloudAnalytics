@@ -4,5 +4,7 @@ import com.github.klee0kai.cloud.core.data.settings.delegates.BaseSettingsReposi
 
 class AppLocalSettings : BaseSettingsRepository(isFake = false) {
 
+    val remoteServerAddress = stringDelegate("remote_server_address") { "http://localhost:8080" }
+
 
 }

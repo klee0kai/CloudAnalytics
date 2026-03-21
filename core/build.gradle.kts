@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinx.rpc)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -30,6 +31,7 @@ kotlin {
                 implementation(libs.bundles.kotlin)
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.bundles.ktor.client)
+                implementation(libs.bundles.rpc.client)
                 implementation(libs.bundles.multiplatform.settings)
 
                 // put your Multiplatform dependencies here
@@ -38,17 +40,22 @@ kotlin {
                 implementation(libs.stone.kotlin)
                 implementation(libs.kotlinpoet)
                 implementation(libs.koson)
+
             }
         }
 
         val jvmMain by getting {
             dependencies {
+                implementation(libs.bundles.ktor.server)
+                implementation(libs.bundles.rpc.server)
+
                 implementation(libs.jetbrains.koog)
                 implementation(libs.gradle.tooling)
                 implementation(libs.tasktree)
-                implementation(libs.bundles.ktor.server)
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.ktor.client.cio)
+
+
             }
         }
 

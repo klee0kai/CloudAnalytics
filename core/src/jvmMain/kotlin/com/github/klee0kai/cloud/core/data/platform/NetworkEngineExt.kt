@@ -6,6 +6,9 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.network.tls.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.rpc.krpc.ktor.client.installKrpc
+import kotlinx.rpc.krpc.rpcClientConfig
+import kotlinx.rpc.krpc.serialization.json.json
 import kotlinx.serialization.json.Json
 import java.security.cert.X509Certificate
 import javax.net.ssl.X509TrustManager
@@ -20,8 +23,6 @@ actual fun initNetworkEngine(
             ignoreCert()
         }
     }
-
-
     install(ContentNegotiation) {
         json(
             Json {
@@ -29,6 +30,17 @@ actual fun initNetworkEngine(
             }
         )
     }
+
+    installKrpc {
+        rpcClientConfig {
+            serialization {
+                json()
+            }
+        }
+    }
+
+
+
 }
 
 

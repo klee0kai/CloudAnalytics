@@ -8,13 +8,13 @@ import com.github.klee0kai.cloud.core.di.providers.CoreJvmProviders
 import com.github.klee0kai.stone.annotations.component.Component
 import com.github.klee0kai.stone.annotations.component.ExtendOf
 
-val CoreJvmComponentDI: CoreJvmComponent = CoreComponentJvmComponentStone().apply {
+val CoreJvmDI: CoreJvmComponent = CoreJvmComponentStoneComponent().apply {
     initJvmModules()
 }
 
-actual val CoreComponentDI: Core get() = CoreJvmComponentDI
+actual val CoreDI: CoreComponent get() = CoreJvmDI
 
-fun Core.initJvmModules() {
+fun CoreComponent.initJvmModules() {
     initServicesModule(ServicesCoreModuleJvmExt())
     initInteractorsModule(InteractorsCoreModuleJvmExt())
 }
@@ -25,9 +25,9 @@ fun Core.initJvmModules() {
         GradleProjectId::class,
     ],
 )
-interface CoreJvmComponent : Core, CoreJvmProviders, CoreJvmModules {
+interface CoreJvmComponent : CoreComponent, CoreJvmProviders, CoreJvmModules {
 
     @ExtendOf
-    fun ext(component: Core)
+    fun ext(component: CoreComponent)
 
 }
