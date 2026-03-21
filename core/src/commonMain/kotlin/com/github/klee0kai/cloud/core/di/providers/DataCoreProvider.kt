@@ -5,7 +5,7 @@ import com.github.klee0kai.stone.wrappers.AsyncCoroutineProvide
 import com.russhwolf.settings.Settings
 import io.ktor.client.*
 
-interface DataProvider {
+interface DataCoreProvider {
 
     fun networkEngine(): AsyncCoroutineProvide<HttpClient>
 

@@ -1,3 +1,3 @@
 package com.github.klee0kai.cloud.core.di
 
-actual val CoreDI: CoreComponent get() = CoreComponentStoneComponent()
+actual val CoreComponentDI: Core get() = CoreComponentStone()

@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
 @Module
-open class CoroutineScopeModule {
+open class CoroutineCoreModule {
 
     @MainDispatcher
     open fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate

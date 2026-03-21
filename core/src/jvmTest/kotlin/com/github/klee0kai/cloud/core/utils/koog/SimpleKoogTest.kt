@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.core.koog
+package com.github.klee0kai.cloud.core.utils.koog
 
 import ai.koog.agents.core.agent.AIAgent
 import ai.koog.prompt.executor.clients.google.GoogleModels

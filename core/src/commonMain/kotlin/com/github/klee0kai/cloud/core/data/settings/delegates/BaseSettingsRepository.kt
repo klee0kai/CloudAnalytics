@@ -1,6 +1,6 @@
 package com.github.klee0kai.cloud.core.data.settings.delegates
 
-import com.github.klee0kai.cloud.core.di.CoreDI
+import com.github.klee0kai.cloud.core.di.CoreComponentDI
 import com.tradingview.mountebank.compose.data.settings.delegates.IntNoteDelegate
 import com.tradingview.mountebank.compose.data.settings.delegates.LongNoteDelegate
 import kotlinx.serialization.json.Json
@@ -9,8 +9,8 @@ open class BaseSettingsRepository(
     private val isFake: Boolean = false,
 ) {
 
-    protected val settingsEngine = CoreDI.settingsEngine()
-    protected val scope = CoreDI.defaultThreadScope()
+    protected val settingsEngine = CoreComponentDI.settingsEngine()
+    protected val scope = CoreComponentDI.defaultThreadScope()
     val jsonEngine = Json
 
     protected fun stringDelegate(

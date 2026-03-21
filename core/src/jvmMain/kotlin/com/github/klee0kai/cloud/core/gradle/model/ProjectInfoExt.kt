@@ -24,15 +24,11 @@ fun TaskNode.toDomainModel(
     path = path,
     name = name,
     className = className,
-    classLoader = classLoader,
     projectName = projectName,
     group = group,
     description = description,
     termDir = termDir,
     dependencies = dependencies,
-    sourceFiles = sourceFiles,
-    properties = properties,
-    outputFiles = outputFiles,
 )
 
 fun ProjectNode.toDomainModel(

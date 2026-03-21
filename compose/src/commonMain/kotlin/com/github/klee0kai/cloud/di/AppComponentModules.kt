@@ -1,32 +1,32 @@
 package com.github.klee0kai.cloud.di
 
-import com.github.klee0kai.cloud.core.di.modules.InteractorsModule
-import com.github.klee0kai.cloud.core.di.modules.PresentersModule
-import com.github.klee0kai.cloud.core.di.modules.ServicesModule
+import com.github.klee0kai.cloud.core.di.modules.InteractorsCoreModule
+import com.github.klee0kai.cloud.core.di.modules.PresentersCoreModule
+import com.github.klee0kai.cloud.core.di.modules.ServicesCoreModule
 import com.github.klee0kai.stone.annotations.component.Init
 import com.github.klee0kai.stone.annotations.component.ModuleOriginFactory
 
 interface AppComponentModules {
 
     /* get module */
-    fun presenters(): PresentersModule
-    fun interactors(): InteractorsModule
-    fun repositories(): ServicesModule
+    fun presenters(): PresentersCoreModule
+    fun interactors(): InteractorsCoreModule
+    fun repositories(): ServicesCoreModule
 
     /* get origin factories */
     @ModuleOriginFactory
-    fun presentersFactory(): PresentersModule
+    fun presentersFactory(): PresentersCoreModule
 
     @ModuleOriginFactory
-    fun interactorsFactory(): InteractorsModule
+    fun interactorsFactory(): InteractorsCoreModule
 
     @ModuleOriginFactory
-    fun repositoriesFactory(): ServicesModule
+    fun repositoriesFactory(): ServicesCoreModule
 
     /* override */
 
     @Init
-    fun initPresenterModule(presentersModule: PresentersModule)
+    fun initPresenterModule(presentersCoreModule: PresentersCoreModule)
 
 
 }

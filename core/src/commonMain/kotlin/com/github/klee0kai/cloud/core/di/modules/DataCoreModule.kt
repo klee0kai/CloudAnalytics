@@ -9,7 +9,7 @@ import com.russhwolf.settings.Settings
 import io.ktor.client.*
 
 @Module
-interface DataModule {
+interface DataCoreModule {
 
     @Provide(cache = Provide.CacheType.Weak)
     fun networkEngine(): HttpClient = initNetworkEngine()
