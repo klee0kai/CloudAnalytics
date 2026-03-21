@@ -1,4 +1,4 @@
-package com.github.klee0kai.cloud.di
+package com.github.klee0kai.cloud.di.modules
 
 import com.github.klee0kai.cloud.core.di.modules.InteractorsCoreModule
 import com.github.klee0kai.cloud.core.di.modules.PresentersCoreModule
@@ -6,7 +6,7 @@ import com.github.klee0kai.cloud.core.di.modules.ServicesCoreModule
 import com.github.klee0kai.stone.annotations.component.Init
 import com.github.klee0kai.stone.annotations.component.ModuleOriginFactory
 
-interface AppComponentModules {
+interface ComposeModules {
 
     /* get module */
     fun presenters(): PresentersCoreModule

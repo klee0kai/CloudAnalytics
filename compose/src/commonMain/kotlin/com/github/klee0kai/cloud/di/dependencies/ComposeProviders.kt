@@ -6,7 +6,7 @@ import com.github.klee0kai.cloud.core.di.providers.ServicesCoreProvider
 import com.github.klee0kai.stone.annotations.dependencies.Dependencies
 
 @Dependencies
-interface AppComponentCoreCoreCoreProvider :
+interface ComposeProviders :
     PresentersCoreProvider,
     InteractorsCoreProvider,
     ServicesCoreProvider

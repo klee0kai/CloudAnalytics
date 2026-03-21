@@ -28,32 +28,31 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.bundles.kotlin)
-                implementation(libs.bundles.ktor.common)
-                implementation(libs.bundles.ktor.client)
-                implementation(libs.bundles.rpc.client)
-                implementation(libs.bundles.multiplatform.settings)
+                api(libs.bundles.kotlin)
+                api(libs.bundles.ktor.common)
+                api(libs.bundles.ktor.client)
+                api(libs.bundles.rpc.client)
+                api(libs.bundles.multiplatform.settings)
 
                 // put your Multiplatform dependencies here
-                implementation(libs.kotlinx.atomicfu)
-                implementation(libs.kermit)
-                implementation(libs.stone.kotlin)
-                implementation(libs.kotlinpoet)
-                implementation(libs.koson)
-
+                api(libs.kotlinx.atomicfu)
+                api(libs.kermit)
+                api(libs.stone.kotlin)
+                api(libs.kotlinpoet)
+                api(libs.koson)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation(libs.bundles.ktor.server)
-                implementation(libs.bundles.rpc.server)
+                api(libs.bundles.ktor.server)
+                api(libs.bundles.rpc.server)
 
-                implementation(libs.jetbrains.koog)
-                implementation(libs.gradle.tooling)
-                implementation(libs.tasktree)
-                implementation(libs.ktor.client.okhttp)
-                implementation(libs.ktor.client.cio)
+                api(libs.jetbrains.koog)
+                api(libs.gradle.tooling)
+                api(libs.tasktree)
+                api(libs.ktor.client.okhttp)
+                api(libs.ktor.client.cio)
 
 
             }
@@ -61,25 +60,25 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation(libs.jetbrains.koog)
-                implementation(libs.ktor.client.okhttp)
+                api(libs.jetbrains.koog)
+                api(libs.ktor.client.okhttp)
             }
         }
 
         val wasmJsMain by getting {
             dependencies {
-                implementation(libs.ktor.client.js)
+                api(libs.ktor.client.js)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(libs.kotlin.test)
+                api(libs.kotlin.test)
             }
         }
 
         val jvmTest by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines.test)
+                api(libs.kotlinx.coroutines.test)
             }
         }
     }

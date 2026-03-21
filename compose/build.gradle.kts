@@ -80,39 +80,39 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(projects.core)
+                api(projects.core)
 
-                implementation(libs.bundles.compose)
-                implementation(libs.kotlinx.atomicfu)
+                api(libs.bundles.compose)
+                api(libs.kotlinx.atomicfu)
 
 
-                implementation(libs.androidx.lifecycle.viewmodel)
-                implementation(libs.androidx.lifecycle.runtimeCompose)
-                implementation(libs.stone.kotlin)
-                implementation(libs.kermit)
+                api(libs.androidx.lifecycle.viewmodel)
+                api(libs.androidx.lifecycle.runtimeCompose)
+                api(libs.stone.kotlin)
+                api(libs.kermit)
 
-                implementation(libs.compose.kuiver)
+                api(libs.compose.kuiver)
             }
         }
         val desktopMain by getting {
             dependencies {
-                implementation(compose.desktop.currentOs)
-                implementation(libs.kotlinx.coroutinesSwing)
-                implementation(libs.compose.tooling)
+                api(compose.desktop.currentOs)
+                api(libs.kotlinx.coroutinesSwing)
+                api(libs.compose.tooling)
             }
         }
 
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.activity.compose)
-                implementation(libs.compose.tooling)
+                api(libs.androidx.core.ktx)
+                api(libs.androidx.activity.compose)
+                api(libs.compose.tooling)
             }
         }
 
         val commonTest by getting {
             dependencies {
-                implementation(libs.kotlin.test)
+                api(libs.kotlin.test)
             }
         }
 
